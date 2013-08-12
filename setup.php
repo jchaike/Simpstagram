@@ -1,5 +1,9 @@
+<!--
+First time setup script Instructions are in the page. ;)
+-->
 <?php
 session_start();
+echo "So if you haven't noticed, there's lots of warnings. Probably should hide them.";
 if (isset($_POST["send"]))
 {
 	$_SESSION['clientID']=$_POST['clientID'];
@@ -46,11 +50,11 @@ if (isset($_POST["send"]))
 
 /***write that data as parameters!!!!***/
 
-$ourFileName = "theParameters.php";
+$ourFileName = "parameters.php";
 $ourFileHandle = fopen($ourFileName, 'w') or die("can't open file");
 fclose($ourFileHandle);
 
-$file = 'theParameters.php';
+$file = 'parameters.php';
 
 // Append a new person to the file
 $current = 

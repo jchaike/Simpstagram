@@ -1,5 +1,5 @@
 <?php
-include ('theParameters.php');
+include ('parameters.php');
 
 /*******************retrieve user ID***************************/
 

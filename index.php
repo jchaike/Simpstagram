@@ -7,7 +7,8 @@
 --->
 <?php
 session_start();
-if (!(file_exists("theParameters.php")))
+//Checks for theParameters.php. If it exists, include the first time setup file, if not, include instagram.php
+if (!(file_exists("parameters.php")))
 {
 	//theParameters.php does not exist, therefore we must set it up!
 	include('setup.php');
