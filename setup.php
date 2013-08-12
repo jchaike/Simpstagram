@@ -43,6 +43,7 @@ if (isset($_POST["send"]))
      $accessToken=$arr['access_token'];
 //	 echo "token:<br>".$accessToken;
 
+
 /***write that data as parameters!!!!***/
 
 $ourFileName = "theParameters.php";
@@ -52,15 +53,20 @@ fclose($ourFileHandle);
 $file = 'theParameters.php';
 
 // Append a new person to the file
-$current = '<?php
-			$clientID="'.$_SESSION['clientID'].'";
-			$secretKey="'.$_SESSION['secretKey'].'";
-			$redirectURI="'.$_SESSION['redirectURI'].'";
-			$userName="'.$_SESSION['username'].'";
-			$count='.$_SESSION['count'].';
-			$imageType="'.$_SESSION['imageType'].'";
-			$accesstoken="'.$accessToken.'";
-		?>';
+$current = 
+'<?php
+/**
+** Parameters auto created from setup.php
+** Feel free to modify these without running setup.php again
+**/
+	$clientID="'.$_SESSION['clientID'].'";
+	$secretKey="'.$_SESSION['secretKey'].'";
+	$redirectURI="'.$_SESSION['redirectURI'].'";
+	$userName="'.$_SESSION['username'].'";
+	$count='.$_SESSION['count'].';
+	$imageType="'.$_SESSION['imageType'].'";
+	$accesstoken="'.$accessToken.'";
+?>';
 			
 // Write the contents back to the file
 file_put_contents($file, $current);
@@ -78,39 +84,40 @@ echo "<script>location.reload();</script";
 <head>
 </head>
 <body>
-<p>Welcome to the Instagram integration!<br>
-The purpose of this script is to help you easily setup and obtain all required credentials to get your Instagram integrated in the simplest way<br>
-<br>
-This page assumes that you have registered an Instagram client through the Instagram developer page.
-<br>
-If not, you may do so by <a href="#">clicking here</a>.<br>
-<br>
-<b>IMPORTANT:</b><br>
-<i>Set your Redirect URI on the Instagram Client to the following URL:<br></i><br>
-<?php 
-  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
-  $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
-  $url .= $_SERVER["REQUEST_URI"];
-  print $url; 
-?>
-<br><br>
-Please fill out the form below to get started:<br>
 
-<form method="post" action="setup.php" name="parametersform">
-Client ID: <input type="text" name="clientID" value="39318d8c7d3f430fb27ba26da18fdb38"><br>
-Secret Key: <input type="text" name="secretKey" value="f6d42df02c174181a15780d772b2ae8d"><br>
-Redirect URI: <input type="text" name="redirectURI" value="<?php echo $url;?>"><br>
-Username: <input type="text" name="username"><br>
-Number of Photos to Get (less than 33): <input type="text" name="count"><br>
-Image Type:
-<select name="imageType">
-	<option>standard_resolution</option>
-	<option>low_resolution</option>
-	<option>thumbnail</option>
-</select>
-<br>
-<input type="submit" name="send" value="Next"/>
-</form>
+	<p>Welcome to the Simpstagram first time setup page!<br><br>
+	The purpose of this script is to help you easily setup and obtain all required credentials to get your Instagram integrated in the simplest way<br>
+	<br>
+	This page assumes that you have registered an Instagram client through the Instagram developer page.
+	<br>
+	If not, you may do so by <a href="#">clicking here</a>.<br>
+	<br>
+	<b>IMPORTANT:</b><br>
+	<i>Set your Redirect URI on the Instagram Client to the following URL <b>exactly</b> as shown below:<br></i><br>
+	<?php 
+	  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
+	//  $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
+	  $url .= $_SERVER["REQUEST_URI"];
+	  print $url; 
+	?>
+	<br><br>
+	Please fill out the form below to get started:<br>
+
+	<form method="post" action="setup.php" name="parametersform">
+		Client ID: <input type="text" name="clientID" value="39318d8c7d3f430fb27ba26da18fdb38"><br>
+		Secret Key: <input type="text" name="secretKey" value="f6d42df02c174181a15780d772b2ae8d"><br>
+		Redirect URI: <input type="text" name="redirectURI" value="<?php echo $url;?>"><br>
+		Username: <input type="text" name="username"><br>
+		Number of Photos to Get (less than 33): <input type="text" name="count"><br>
+		Image Type:
+		<select name="imageType">
+			<option>standard_resolution</option>
+			<option>low_resolution</option>
+			<option>thumbnail</option>
+		</select>
+		<br>
+		<input type="submit" name="send" value="Next"/>
+	</form>
 
 </body>
 </html>
