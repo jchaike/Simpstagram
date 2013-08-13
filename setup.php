@@ -18,6 +18,7 @@ if (isset($_POST["send"]))
 	$imageType=$_SESSION['imageType'];
 	
 	echo "	<link rel='stylesheet' type='text/css' href='http://www.jchaike.com/instagram/style.css'>
+			<div style='font-size:32pt;color:white;text-shadow:2px 2px #000000;'><i><b>Simpstagram Setup</b></i></div>
 			<div class='wizard' style='display:block'>
 				<div id='content'>
 					<h2>Access Token</h2>
@@ -111,6 +112,7 @@ echo "<script>location.reload();</script";
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 </head>
 <body>
+	<div style="font-size:32pt;color:white;text-shadow:2px 2px #000000;"><i><b>Simpstagram Setup</b></i></div>
 	<div id="step0" class="wizard" style="display:block;">
 		<div id="content">
 			<p>Welcome to the Simpstagram first time setup page!<br><br>
