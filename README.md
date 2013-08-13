@@ -31,6 +31,10 @@ This is where the magic of getting your Instagram feed happens.
 
 Determines which of the two PHP files are used, depending on the existence of a parameters PHP file.
 
+### Parameters.php
+
+This file contains only the credentials to authorize API requests to Instagram
+
 
 Contributing
 ------------
