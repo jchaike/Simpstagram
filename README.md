@@ -3,7 +3,7 @@ Simple Instagram PHP
 
 This Readme consists the instructions required to get your Instagram's recent photos easily.
 
-The script works by checking for the existence of "theParameters.php" whose contents and purpose is described in this document.
+The script works by checking for the existence of "parameters.php" whose contents and purpose is described in this document.
 
 
 Installation
