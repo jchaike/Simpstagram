@@ -17,7 +17,32 @@ if (isset($_POST["send"]))
 	$count=$_SESSION['count'];
 	$imageType=$_SESSION['imageType'];
 	
-	echo "Retrieving Instagram Access Token, please wait....";
+	echo "<link rel='stylesheet' type='text/css' href='http://www.jchaike.com/instagram/style.css'>
+			<div class='wizard' style='display:block'><div id='content'>
+			<h2>Access Token</h2>
+			Retrieving Instagram Access Token<br>
+			Please wait....
+			<br>
+			<img src='loader.gif'/>
+			<img src='http://www.jchaike.com/instagram/loader.gif'/>
+			</div>
+			<input type='button' class='buttonback' disabled value='<<Back'/><input class='buttonnext' type='button' disabled value='Wait...'/>
+			</div>
+			<div id='footer'>
+<div id='content'>
+Script created by:<br>
+Josh Chaiken (jchaike)<br>
+<a href='http://www.jchaike.com'>site</a> | <a href='http://www.github.com/jchaike'>git</a> | <a href='http://www.twitter.com/jchaike'>tw</a>
+<br>
+<a href='mailto:josh@jchaike.com'>email</a>
+<br>
+<div id='notes'>
+Clippy, and setup wizard are (C) Microsoft
+Instagram is (C) Instagram Inc.
+Script created by Josh Chaiken
+</div>
+</div>
+</div>";
 	echo '<script>window.location = "https://api.instagram.com/oauth/authorize/?client_id='.$clientID.'&redirect_uri='.$redirectURI.'&response_type=code"</script>';
 }
  if($_GET['code']) {
@@ -66,7 +91,13 @@ $current =
 	$count="'.$_SESSION['count'].'";
 	$imageType="'.$_SESSION['imageType'].'";
 	$accesstoken="'.$accessToken.'";
-?>';
+?>
+<!--
+"Simpstagram" PHP Easy Script created by Josh Chaiken (jchaike)
+jchaike.com
+If you use this script/modify/redistribute, please keep this somewhere in the source
+This script comes with absolutely no warrenty, please see README.MD for more information.
+-->';
 			
 // Write the contents back to the file
 file_put_contents($file, $current);
