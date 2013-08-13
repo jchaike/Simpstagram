@@ -146,6 +146,7 @@ echo "<script>location.reload();</script";
 	
 	<div id="step5" class="wizard" >
 	<div id="content">
+	<h2>Step 5:</h2>
 	Fill out the information below:<br>
 
 	<form method="post" action="setup.php" name="parametersform">
@@ -160,6 +161,8 @@ echo "<script>location.reload();</script";
 			<option>low_resolution</option>
 			<option>thumbnail</option>
 		</select>
+		<br>
+		<div id="terms">By Clicking "Install" you agree to the terms of use provided in README.MD. This install service and script come with no warranty, and jchaike cannot be held responsible for any damages that may be caused by use of this product.</div>
 		</div>
 		<br>
 		<input type="button" class="buttonback" id="back5" value="<<Back"/><input class="buttonnext" type="submit" name="send" value="Install>"/>
