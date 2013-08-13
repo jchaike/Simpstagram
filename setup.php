@@ -1,9 +1,6 @@
-<!--
-First time setup script Instructions are in the page. ;)
--->
 <?php
 session_start();
-echo "So if you haven't noticed, there's lots of warnings. Probably should hide them.";
+
 if (isset($_POST["send"]))
 {
 	$_SESSION['clientID']=$_POST['clientID'];
@@ -48,7 +45,7 @@ if (isset($_POST["send"]))
 //	 echo "token:<br>".$accessToken;
 
 
-/***write that data as parameters!!!!***/
+/***write that data!!!***/
 
 $ourFileName = "parameters.php";
 $ourFileHandle = fopen($ourFileName, 'w') or die("can't open file");
@@ -56,7 +53,6 @@ fclose($ourFileHandle);
 
 $file = 'parameters.php';
 
-// Append a new person to the file
 $current = 
 '<?php
 /**
@@ -67,7 +63,7 @@ $current =
 	$secretKey="'.$_SESSION['secretKey'].'";
 	$redirectURI="'.$_SESSION['redirectURI'].'";
 	$userName="'.$_SESSION['username'].'";
-	$count='.$_SESSION['count'].';
+	$count="'.$_SESSION['count'].'";
 	$imageType="'.$_SESSION['imageType'].'";
 	$accesstoken="'.$accessToken.'";
 ?>';
@@ -75,7 +71,7 @@ $current =
 // Write the contents back to the file
 file_put_contents($file, $current);
 
-/********/
+/**************************/
 
 // Destroy the session variables.
 session_destroy();		
@@ -86,30 +82,77 @@ echo "<script>location.reload();</script";
 
 <html>
 <head>
+<style>
+.wizard {
+    position: relative;
+    height:350px;
+    width:50%;
+    display:none;
+}
+
+.wizard .buttonnext {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+}
+
+.wizard .buttonback {
+   position: absolute;
+   bottom: 0;
+   right: 75;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 </head>
 <body>
 
+	<div id="step0" class="wizard" style="display:block;">
 	<p>Welcome to the Simpstagram first time setup page!<br><br>
 	The purpose of this script is to help you easily setup and obtain all required credentials to get your Instagram integrated in the simplest way<br>
 	<br>
-	This page assumes that you have registered an Instagram client through the Instagram developer page.
+	Click "next" to continue.
+	<br><br>
+	<input type="button" class="buttonback" id="disabled" disabled value="<<Back"/><input type="button" class="buttonnext" id="next0" value="Next>>"/>
+	</div>
+	
+	<div id="step1" class="wizard" >1) Visit <a href="http://www.instagram.com/developer">Instagram's Developer Page</a>
 	<br>
-	If not, you may do so by <a href="#">clicking here</a>.<br>
+	<img src="http://www.jchaike.com/instagram/step1.gif"/>
+	<br><input type="button" class="buttonback" id="back1" value="<<Back"/><input type="button" class="buttonnext" id="next1" value="Next>>"/>
+	</div>
+	
+	<div id="step2" class="wizard" >
+	2) Log in, and click "Manage Clients"
 	<br>
-	<b>IMPORTANT:</b><br>
-	<i>Set your Redirect URI on the Instagram Client to the following URL <b>exactly</b> as shown below:<br></i><br>
+	<img src="http://www.jchaike.com/instagram/step2.gif"/>
+	<br><input type="button" class="buttonback" id="back2" value="<<Back"/><input type="button" class="buttonnext" id="next2" value="Next>>"/>
+	</div>
+	
+	<div id="step3" class="wizard" >
+	3) Click "Register a New Client"
+	<br>
+	<img src="http://www.jchaike.com/instagram/step3.gif"/>
+	<br><input type="button" class="buttonback" id="back3" value="<<Back"/><input type="button" class="buttonnext" id="next3" value="Next>>"/>
+	</div>
+	
+	<div id="step4" class="wizard" >
+	4) Create your application<br>
+	<b>IMPORTANT: THIS IS YOUR REDIRECT URI:</b><br>
 	<?php 
 	  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
 	//  $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
 	  $url .= $_SERVER["REQUEST_URI"];
-	  print $url; 
+	  print '<h2>'.$url.'</h2>'; 
 	?>
-	<br><br>
-	Please fill out the form below to get started:<br>
+	<br><input type="button" class="buttonback" id="back4" value="<<Back"/><input type="button" class="buttonnext" id="next4" value="Next>>"/>
+	</div>
+	
+	<div id="step5" class="wizard" >
+	Fill out the information below:<br>
 
 	<form method="post" action="setup.php" name="parametersform">
-		Client ID: <input type="text" name="clientID" value="39318d8c7d3f430fb27ba26da18fdb38"><br>
-		Secret Key: <input type="text" name="secretKey" value="f6d42df02c174181a15780d772b2ae8d"><br>
+		Client ID: <input type="text" name="clientID" ><br>
+		Secret Key: <input type="text" name="secretKey"><br>
 		Redirect URI: <input type="text" name="redirectURI" value="<?php echo $url;?>"><br>
 		Username: <input type="text" name="username"><br>
 		Number of Photos to Get (less than 33): <input type="text" name="count"><br>
@@ -120,8 +163,9 @@ echo "<script>location.reload();</script";
 			<option>thumbnail</option>
 		</select>
 		<br>
-		<input type="submit" name="send" value="Next"/>
+		<input type="button" class="buttonback" id="back5" value="<<Back"/><input class="buttonnext" type="submit" name="send" value="Setup"/>
 	</form>
-
+	</div>
 </body>
+<script src="http://www.jchaike.com/instagram/wizard.js"></script>
 </html>
