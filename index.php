@@ -1,14 +1,13 @@
 <?php
-//session_start();
 //Checks for theParameters.php. If it exists, include the first time setup file, if not, include instagram.php
 if (!(file_exists("parameters.php")))
 {
-	//theParameters.php does not exist, therefore we must set it up!
+	//parameters.php does not exist. Load setup.php (setup wizard)
 	include('setup.php');
 }
 else
 {
-	//great! everything is good to go. Lets load that Instagram stuff!
+	//parameters.php does exist, setup wizard must have already ran, load the Instagram user feed
 	include('instagram.php');
 }
 ?>
