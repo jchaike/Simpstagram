@@ -24,3 +24,9 @@ foreach($json['data'] as $item) {
 
 }
 ?>
+<!--
+"Simpstagram" PHP Easy Script created by Josh Chaiken (jchaike)
+jchaike.com
+If you use this script/modify/redistribute, please keep this somewhere in the source
+This script comes with absolutely no warrenty, please see README.MD for more information.
+-->
