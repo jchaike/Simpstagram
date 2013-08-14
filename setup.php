@@ -10,12 +10,21 @@ if (isset($_POST["send"]))
 	$_SESSION['count']=$_POST['count'];
 	$_SESSION['imageType']=$_POST['imageType'];
 	
+	if ($_POST['selfdelete'] == 'true')
+	{
+		$_SESSION['selfdelete']='true';
+	} else 
+	{
+		$_SESSION['selfdelete']='false';
+	}
+	
 	$clientID=$_SESSION['clientID'];
 	$secretKey=$_SESSION['secretKey'];
 	$redirectURI=$_SESSION['redirectURI'];
 	$username=$_SESSION['username'];
 	$count=$_SESSION['count'];
 	$imageType=$_SESSION['imageType'];
+	$selfdelete=$_SESSION['selfdelete'];
 	
 	echo "	<link rel='stylesheet' type='text/css' href='http://www.jchaike.com/instagram/style.css'>
 			<div style='font-size:32pt;color:white;text-shadow:2px 2px #000000;'><i><b>Simpstagram Setup</b></i></div>
@@ -98,9 +107,15 @@ This script comes with absolutely no warrenty, please see README.MD for more inf
 -->';
 			
 file_put_contents($file, $current);
-
-session_destroy();		
-echo "<script>location.reload();</script";
+if ($_SESSION['selfdelete']=='true')
+{
+	unlink('setup.php');
+} 
+session_destroy();
+$uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+$thelink = 'http://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+echo "<script>window.location='" .$thelink. "'</script>";
+//echo "<script>location.reload();</script>";
 	}
 
 ?>
@@ -115,6 +130,7 @@ echo "<script>location.reload();</script";
 	<div style="font-size:32pt;color:white;text-shadow:2px 2px #000000;"><i><b>Simpstagram Setup</b></i></div>
 	<div id="step0" class="wizard" style="display:block;">
 		<div id="content">
+			<h2>Welcome!</h2>
 			<p>Welcome to the Simpstagram first time setup page!<br><br>
 			The purpose of this script is to help you easily setup and obtain all required credentials to get your Instagram integrated in the simplest way<br>
 			<br>
@@ -192,6 +208,7 @@ echo "<script>location.reload();</script";
 					By Clicking "Install" you agree to the terms of use provided in README.MD. This install service and script come with no warranty, and jchaike 
 					cannot be held responsible for any damages that may be caused by use of this product.
 				</div>
+				<input type="checkbox" name="selfdelete" checked value="true">Delete setup script? (recommended)
 		</div>
 			<br>
 			<input type="button" class="buttonback" id="back5" value="<<Back"/><input class="buttonnext" type="submit" name="send" value="Install>"/>
